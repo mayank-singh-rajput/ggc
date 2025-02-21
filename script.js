@@ -237,3 +237,7 @@ document.getElementById("model-delete").addEventListener("click", function () {
     item.textContent = item.dataset.number;
   });
 });
+
+document.getElementById("model-cancel").addEventListener("click", hideModal);
+document.getElementById("model-tick").addEventListener("click", hideModal);
+document.getElementById("model-done").addEventListener("click", hideModal);
