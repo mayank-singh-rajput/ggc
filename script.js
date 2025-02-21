@@ -19,7 +19,7 @@ function startTimer(duration) {
 }
 
 window.onload = function () {
-  startTimer(120); // Start the timer with a 2-minute countdown
+  startTimer(240);
 
   generateGrid("grid1", 80);
   generateGrid("grid2", 80);
