@@ -127,6 +127,28 @@ document.getElementById("startTime").innerHTML = `
   <option value="${currentTime}">${currentTime}</option>
 `;
 
+document.getElementById("currentTime").textContent = currentTime;
+
+// Function to toggle selection in both modal and original grid
+function toggleSelectionInModal(modalItem, gridId) {
+  const originalGrid = document.getElementById(gridId);
+  const originalGridItem = originalGrid.querySelector(
+    `.grid-item[data-number="${modalItem.textContent}"]`
+  );
+
+  if (modalItem.classList.contains("selected")) {
+    modalItem.classList.remove("selected");
+    modalItem.textContent = modalItem.dataset.number;
+    originalGridItem.classList.remove("selected");
+    originalGridItem.textContent = originalGridItem.dataset.number;
+  } else {
+    modalItem.classList.add("selected");
+    modalItem.textContent = "✗";
+    originalGridItem.classList.add("selected");
+    originalGridItem.textContent = "✗";
+  }
+}
+
 // Function to open modal
 function openModal(gridId) {
   const modal = document.getElementById("modal");
@@ -151,7 +173,6 @@ function showModal(gridId) {
   modalTitle.innerHTML = ticketTitle;
   modalGrid.innerHTML = ticketBody;
 
-  // Make the grid items in the modal selectable
   const modalGridItems = modalGrid.querySelectorAll(".grid-item");
   modalGridItems.forEach((item) => {
     item.onclick = function () {
@@ -178,11 +199,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const numSelected = parseInt(this.textContent);
       const selectedGrid = document.getElementById("modalGrid");
 
-      const allGridItems = selectedGrid.querySelectorAll(".grid-item");
-      const randomIndexes = getRandomIndexes(allGridItems.length, numSelected);
+      const modalGridItems = selectedGrid.querySelectorAll(".grid-item");
+      const randomIndexes = getRandomIndexes(
+        modalGridItems.length,
+        numSelected
+      );
 
       randomIndexes.forEach((index) => {
-        const randomItem = allGridItems[index];
+        const randomItem = modalGridItems[index];
         randomItem.classList.add("selected");
         randomItem.textContent = "✗";
       });
@@ -201,25 +225,15 @@ function getRandomIndexes(totalItems, numSelected) {
   return indexes;
 }
 
-// Function to toggle selection in both modal and original grid
-function toggleSelectionInModal(modalItem, gridId) {
-  const originalGrid = document.getElementById(gridId);
-  const originalGridItem = originalGrid.querySelector(
-    `.grid-item[data-number="${modalItem.textContent}"]`
+// delete seletion of the model
+document.getElementById("model-delete").addEventListener("click", function () {
+  const modalGrid = document.getElementById("modalGrid");
+  const selectedItemsInModal = modalGrid.querySelectorAll(
+    ".grid-item.selected"
   );
 
-  if (modalItem.classList.contains("selected")) {
-    modalItem.classList.remove("selected");
-    modalItem.textContent = modalItem.dataset.number;
-    originalGridItem.classList.remove("selected");
-    originalGridItem.textContent = originalGridItem.dataset.number;
-  } else {
-    modalItem.classList.add("selected");
-    modalItem.textContent = "✗";
-    originalGridItem.classList.add("selected");
-    originalGridItem.textContent = "✗";
-  }
-}
-
-// Close modal button
-document.getElementById("model-delete").addEventListener("click", hideModal);
+  selectedItemsInModal.forEach((item) => {
+    item.classList.remove("selected");
+    item.textContent = item.dataset.number;
+  });
+});

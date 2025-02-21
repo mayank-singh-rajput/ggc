@@ -50,14 +50,6 @@ header {
   padding: 10px;
 }
 
-.header-logo img {
-  width: 100%;
-  height: auto;
-  max-width: 120px;
-  max-height: 120px;
-  margin: 0;
-}
-
 .header-logo #large-screen-logo-notes,
 .header-logo #small-screen-logo-notes {
   display: flex;
@@ -77,6 +69,41 @@ header {
   padding: 0;
   margin: 0;
 }
+
+.header-buttons {
+  margin-left: 20px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.header-buttons p {
+  margin: 0;
+  padding: 2px 20px;
+  font-weight: lighter;
+}
+
+#headerbutton {
+  background: linear-gradient(to right, greenyellow, green);
+  color: white;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  width: auto;
+  font-size: 12px;
+}
+
+#header-button-text {
+  color: black;
+}
+
+#header-button-price {
+  color: white;
+  text-transform: uppercase;
+} 
+
 
 ul {
   list-style: none;
@@ -129,7 +156,7 @@ li {
 
 .lottery-grid {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   position: relative;
   display: flex;
   margin-top: 25px;
@@ -137,7 +164,7 @@ li {
   border-radius: 8px;
   scrollbar-width: 0;
   overflow-x: auto;
-  padding: 10px 0;
+  padding: 8px;
 }
 
 .ticket {
@@ -219,15 +246,6 @@ li {
   color: #ff0066;
 }
 
-button {
-  padding: 4px;
-  background: black;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
 .controls-buttons {
   display: flex;
   justify-content: flex-end;
@@ -276,7 +294,8 @@ button {
 
 .duration,
 .stake,
-.time {
+.time,
+.small-duration {
   background-color: whitesmoke;
   color: black;
   padding: 10px;
@@ -291,6 +310,61 @@ button {
   font-weight: bold;
   margin-bottom: 10px;
 }
+
+.small-duration {
+  display: flex;
+  flex-direction: column;
+}
+
+.small-stake {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #ccc;
+}
+
+#small-stake {
+  padding: 6px 16px;
+}
+
+.labels-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.labels-container label,
+.small-stake label {
+  font-weight: bold;
+}
+
+.labels-container p {
+  color: #ccc;
+  margin: 0;
+}
+
+.duration-button {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.duration-button button {
+  background-color: #f0f0f0;
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 4px 16px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  text-align: center;
+  margin: 0;
+  box-shadow: 1px 2px 2px #ccc;
+}
+
 
 .radio-container {
   display: flex;
@@ -323,7 +397,8 @@ button {
 }
 
 #stake,
-#startTime {
+#startTime,
+#small-stake {
   font-weight: bold;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -355,7 +430,6 @@ button {
   color: black;
   padding: 16px;
   gap: 4px;
-  width: 50%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   transform: transform(-50, -50);
@@ -515,6 +589,8 @@ button {
 }
 
 .right-content {
+  font-size: medium;
+  font-weight: 800;
   color: black;
   display: flex;
   justify-content: space-between;
@@ -549,16 +625,12 @@ button {
 }
 
 @media (max-width: 700px) {
-  .header-logo {
-    border-right: none;
-  }
-
-  .header-notes {
-    border-right: none;
-  }
-
-  .small-header-timer {
-    display: block;
+  .header-logo img {
+    width: 100%;
+    height: auto;
+    max-width: 80px;
+    max-height: 80px;
+    margin: 0;
   }
 
   .promo-header {
@@ -588,33 +660,49 @@ button {
     padding: 12px 0;
   }
 
-  .header-logo {
+  .model-first, .header-logo {
     width: 100%;
   }
 
-  .header-logo #large-screen-logo-notes {
+  .header-logo, .header-notes {
+    border-right: none;
+  }
+
+  .header-logo #small-screen-logo-notes,
+  .small-header-timer {
+    display: block;
+  }
+
+  .header-logo #large-screen-logo-notes,
+  .model-second,
+  .duration,
+  .stake,
+  .time {
     display: none;
   }
 
-  .header-logo #small-screen-logo-notes {
-    display: block;
+  .options {
+    flex-direction: column;
   }
 }
 
 @media (min-width: 700px) {
-  .header-timer {
-    display: block;
+  .header-logo img {
+    width: 100%;
+    height: auto;
+    max-width: 120px;
+    max-height: 120px;
+    margin: 0;
   }
 
-  .header-notes {
-    display: block;
-  }
-
+  .header-timer,
+  .header-notes,
   .header-logo #large-screen-logo-notes {
     display: block;
   }
 
-  .header-logo #small-screen-logo-notes {
+  .header-buttons, .header-logo #small-screen-logo-notes,
+  .small-duration {
     display: none;
   }
 }
