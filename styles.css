@@ -25,6 +25,7 @@ header {
 .header-logo {
   width: 40%;
   display: flex;
+  align-items: center;
   flex-direction: row;
   gap: 16px;
   border-right: 2px solid #ccc;
@@ -34,7 +35,7 @@ header {
 
 .header-notes {
   width: 30%;
-  display: flex;
+  display: none;
   flex-direction: column;
   border-right: 2px solid #ccc;
   height: auto;
@@ -42,6 +43,7 @@ header {
 }
 
 .header-timer {
+  display: none;
   width: 20%;
   text-align: left;
   height: auto;
@@ -49,15 +51,24 @@ header {
 }
 
 .header-logo img {
+  width: 100%;
+  height: auto;
   max-width: 120px;
   max-height: 120px;
   margin: 0;
 }
 
-.header-logo h1 {
+.header-logo #large-screen-logo-notes,
+.header-logo #small-screen-logo-notes {
   display: flex;
   justify-content: left;
   text-align: left;
+  font-weight: bolder;
+  font-size: 30px;
+}
+
+.crores {
+  font-size: 20px;
 }
 
 .header-notes h3,
@@ -89,6 +100,20 @@ li {
   padding: 4px 8px;
   border-radius: 4px;
 }
+
+#small-digit {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 2px;
+}
+
+.small-header-timer {
+  position: fixed;
+  top: -12px;
+  right: 0;
+  color: white;
+  display: none;
+}
+
 .period {
   font-size: 40px;
   font-weight: 800;
@@ -100,7 +125,6 @@ li {
   padding: 8px;
   border-radius: 8px;
   margin: 8px;
-  overflow: hidden;
 }
 
 .lottery-grid {
@@ -112,6 +136,17 @@ li {
   background-color: #ffcce0;
   border-radius: 8px;
   scrollbar-width: 0;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+.ticket {
+  background: white;
+  color: #ccc;
+  padding: 8px;
+  margin: 4px;
+  border-radius: 4px;
+  text-align: center;
 }
 
 .grid div {
@@ -182,15 +217,6 @@ li {
 
 .selected-h3 {
   color: #ff0066;
-}
-
-.ticket {
-  background: white;
-  color: #ccc;
-  padding: 8px;
-  margin: 4px;
-  border-radius: 4px;
-  text-align: center;
 }
 
 button {
@@ -433,7 +459,6 @@ button {
   box-shadow: 4px 4px 10px #ccc;
 }
 
-
 .optionGrid div:hover {
   background-color: #ddd;
 }
@@ -493,7 +518,7 @@ button {
   color: black;
   display: flex;
   justify-content: space-between;
-  width: 10%;
+  min-width: 10%;
 }
 
 .promo-buttons {
@@ -521,4 +546,75 @@ button {
   background-color: transparent;
   color: black;
   border: 2px solid green;
+}
+
+@media (max-width: 700px) {
+  .header-logo {
+    border-right: none;
+  }
+
+  .header-notes {
+    border-right: none;
+  }
+
+  .small-header-timer {
+    display: block;
+  }
+
+  .promo-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .promo-text {
+    margin-bottom: 8px;
+  }
+
+  .right-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .promo-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .promo-buttons button {
+    width: 100%;
+    padding: 12px 0;
+  }
+
+  .header-logo {
+    width: 100%;
+  }
+
+  .header-logo #large-screen-logo-notes {
+    display: none;
+  }
+
+  .header-logo #small-screen-logo-notes {
+    display: block;
+  }
+}
+
+@media (min-width: 700px) {
+  .header-timer {
+    display: block;
+  }
+
+  .header-notes {
+    display: block;
+  }
+
+  .header-logo #large-screen-logo-notes {
+    display: block;
+  }
+
+  .header-logo #small-screen-logo-notes {
+    display: none;
+  }
 }
